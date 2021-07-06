@@ -69,7 +69,7 @@ namespace Apiresources.WebApi.Controllers.v1
         /// <returns></returns>
         [HttpPost]
         [Route("Paged")]
-        // [Authorize]
+        [Authorize]
         public async Task<IActionResult> Paged(PagedPositionsQuery query)
         {
             return Ok(await Mediator.Send(query));

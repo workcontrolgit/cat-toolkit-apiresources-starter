@@ -121,9 +121,6 @@ namespace Apiresources.WebApi.Extensions
             {
                 options.Authority = configuration["Sts:ServerUrl"];
                 options.RequireHttpsMetadata = false;
-                options.ApiName = configuration["ApiResource:ApiName"];
-                options.ApiSecret = configuration["ApiResource:ApiSecret"];
-
             });
         }
         public static void AddAuthorizationPolicies(this IServiceCollection services, IConfiguration configuration)
