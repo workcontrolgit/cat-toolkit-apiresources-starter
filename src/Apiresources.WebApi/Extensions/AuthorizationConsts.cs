@@ -3,7 +3,8 @@ namespace Apiresources.WebApi.Extensions
 {
     public class AuthorizationConsts
     {
-        public const string AssignmentListPolicy = "AssignmentListPolicy";
-        public const string FormPolicy = "FormPolicy";
+        public const string HrAdminPolicy = "HrAdminPolicy";
+        public const string ManagerPolicy = "ManagerPolicy";
+        public const string EmployeePolicy = "EmployeePolicy";
     }
 }
