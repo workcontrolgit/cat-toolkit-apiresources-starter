@@ -3,6 +3,7 @@ using Apiresources.Application.Features.Positions.Commands.DeletePositionById;
 using Apiresources.Application.Features.Positions.Commands.UpdatePosition;
 using Apiresources.Application.Features.Positions.Queries.GetPositionById;
 using Apiresources.Application.Features.Positions.Queries.GetPositions;
+using Apiresources.WebApi.Extensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -69,7 +70,8 @@ namespace Apiresources.WebApi.Controllers.v1
         /// <returns></returns>
         [HttpPost]
         [Route("Paged")]
-        [Authorize]
+        //[Authorize]
+        [Authorize(Policy = AuthorizationConsts.ManagerPolicy)]
         public async Task<IActionResult> Paged(PagedPositionsQuery query)
         {
             return Ok(await Mediator.Send(query));

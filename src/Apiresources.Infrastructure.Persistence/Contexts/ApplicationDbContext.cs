@@ -47,7 +47,7 @@ namespace Apiresources.Infrastructure.Persistence.Contexts
         protected override void OnModelCreating(ModelBuilder builder)
         {
             var _mockData = this.Database.GetService<IMockService>();
-            var seedPositions = _mockData.SeedPositions(100000);
+            var seedPositions = _mockData.SeedPositions(1000);
             builder.Entity<Position>().HasData(seedPositions);
 
             base.OnModelCreating(builder);

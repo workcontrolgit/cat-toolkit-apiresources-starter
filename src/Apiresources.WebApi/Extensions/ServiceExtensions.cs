@@ -125,13 +125,14 @@ namespace Apiresources.WebApi.Extensions
         }
         public static void AddAuthorizationPolicies(this IServiceCollection services, IConfiguration configuration)
         {
-            string admin = configuration["ApiRoles:HRAdminRole"],
-                    specialist = configuration["ApiRoles:ManagerRole"];
+            string hradmin = configuration["ApiRoles:HRAdminRole"],
+                    manager = configuration["ApiRoles:ManagerRole"], employee = configuration["ApiRoles:EmployeeRole"];
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy(AuthorizationConsts.AssignmentListPolicy, policy => policy.RequireAssertion(context => HasRole(context.User, admin) || HasRole(context.User, specialist)));
-                options.AddPolicy(AuthorizationConsts.FormPolicy, policy => policy.RequireAssertion(context => HasRole(context.User, admin) || HasRole(context.User, specialist)));
+                options.AddPolicy(AuthorizationConsts.HrAdminPolicy, policy => policy.RequireAssertion(context => HasRole(context.User, hradmin)));
+                options.AddPolicy(AuthorizationConsts.ManagerPolicy, policy => policy.RequireAssertion(context => HasRole(context.User, manager) || HasRole(context.User, hradmin)));
+                options.AddPolicy(AuthorizationConsts.EmployeePolicy, policy => policy.RequireAssertion(context => HasRole(context.User, employee) || HasRole(context.User, manager) || HasRole(context.User, hradmin)));
             });
         }
         public static bool HasRole(ClaimsPrincipal user, string role)
